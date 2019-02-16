@@ -41,7 +41,7 @@ class Encryption
      *
      * @since 3.0.0
      */
-    public function __construct($adapter = null, $key = 'euyq74tjfdskjFDSGq74taeoqiertp')
+    public function __construct($key, $adapter = null)
     {
         ($adapter !== null) ? $this->setAdapter($adapter) : $this->setAdapter('openssl');
 		$this->setKey($key);

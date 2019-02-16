@@ -18,14 +18,6 @@ namespace Lablnet\Adapter;
 
 class OpenSslEncryption
 {
-    /**
-     * Store the secret key.
-     *
-     * @since 1.0.0
-     *
-     * @var key
-     */
-    private $key;
 
     /**
      * Store the cipher iv.
@@ -52,7 +44,7 @@ class OpenSslEncryption
      *
      * @return void
      */
-    public function __construct($key = null)
+    public function __construct($key)
     {
         if (isset($key)) {
             $this->iv = openssl_random_pseudo_bytes($this->iv_bytes($this->cipher));

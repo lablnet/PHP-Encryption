@@ -20,7 +20,7 @@ You can encrypt string by calling to encrypt method
 use Lablnet\Encryption;
 require '../vendor/autoload.php';
 
-$encryption = new Encryption();
+$encryption = new Encryption('your-key');
 
 //Encrypt the message
 $encrypt = $encryption->encrypt("This is a text");
@@ -36,7 +36,7 @@ You can decrypt token by calling decrypt method
 use Lablnet\Encryption;
 require '../vendor/autoload.php';
 
-$encryption = new Encryption();
+$encryption = new Encryption('your-key');
 
 //Decrypt the message
 $decrypt = $encryption->decrypt($encrypt);	
@@ -60,7 +60,7 @@ Use of sodium
 use Lablnet\Encryption;
 require '../vendor/autoload.php';
 
-$encryption = new Encryption('sodium');
+$encryption = new Encryption('your-key','sodium');
 ```
 Use of openSSL
 ```php 
@@ -68,8 +68,5 @@ Use of openSSL
 use Lablnet\Encryption;
 require '../vendor/autoload.php';
 
-$encryption = new Encryption('openssl');
-
-//You can also provide your own key for openSSL
-$encryption1 = new Encryption('openssl','my-key');
+$encryption = new Encryption('your-key','openssl');
 ```
