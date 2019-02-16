@@ -31,7 +31,7 @@ class SodiumEncryption extends AbstractAdapter
 
         //$this->key = sodium_crypto_secretbox_keygen();
         //should use user define key.
-        $this->key = bin2hex(substr(hash('sha512', $key),0, 32));
+        $this->key = substr(hash('sha512', $key),0, 32);
     }
 
     /**
