@@ -9,10 +9,26 @@
             "email":"lablnet01@gmail.com",
             "homepage": "https://softhub99.com"
         }
-    ],  
+    ],
+    "require": {
+        "php": "^7.1",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "suggest": {
+        "ext-openssl": "This is for the OpenSSL encryption",
+        "ext-sodium": "This is for the Sodium encryption"
+    },
     "autoload": {
         "psr-4": {
-             "Lablnet\\": "src/"
+            "Lablnet\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lablnet\\Tests\\": "tests/"
         }
     }
 }
