@@ -30,7 +30,7 @@ class SodiumEncryption extends AbstractAdapter
         }
 
         //should use user define key.
-        $this->key = substr(hash('sha512', $key),0, 32);
+        $this->key = substr(hash('sha512', $key), 0, 32);
     }
 
     /**
