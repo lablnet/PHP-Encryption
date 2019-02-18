@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/Lablnet/PHP-Encryption.svg?branch=master)](https://travis-ci.com/Lablnet/PHP-Encryption)
+[![StyleCI](https://github.styleci.io/repos/169368362/shield?branch=master)](https://github.styleci.io/repos/169368362)
+
 # PHP Encryption
 Encryption in PHP.
 
