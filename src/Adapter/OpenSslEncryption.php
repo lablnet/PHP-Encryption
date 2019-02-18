@@ -18,7 +18,6 @@ namespace Lablnet\Adapter;
 
 class OpenSslEncryption
 {
-
     /**
      * Store the cipher iv.
      *

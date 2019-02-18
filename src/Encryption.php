@@ -33,9 +33,9 @@ class Encryption
      * @note This property is not a part of Zest Framework.
      *
      * @var mixed
-     */	
-	private $key = '';
-	
+     */
+    private $key = '';
+
     /**
      * __construct.
      *
@@ -44,7 +44,7 @@ class Encryption
     public function __construct($key, $adapter = null)
     {
         ($adapter !== null) ? $this->setAdapter($adapter) : $this->setAdapter('openssl');
-		$this->setKey($key);
+        $this->setKey($key);
     }
 
     /**
@@ -74,7 +74,7 @@ class Encryption
 
         return $this;
     }
-	
+
     /**
      * Set the encryption key for openSSL.
      *
@@ -83,14 +83,14 @@ class Encryption
      * @note This method is not a part of Zest Framework.
      *
      * @return mixed
-     */	
-	public function setKey($key)
-	{
-		$this->key = $key;
-		
-		return $this;
-	}
-	
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
+
+        return $this;
+    }
+
     /**
      * Encrypt the message.
      *

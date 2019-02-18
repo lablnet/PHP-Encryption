@@ -23,7 +23,7 @@ class EncryptionTest extends TestCase
 {
     public function testEncryptAndDecryptWithOpenSsl()
     {
-        $encryption = new Encryption('12345678990-=====-===','openssl');
+        $encryption = new Encryption('12345678990-=====-===', 'openssl');
         $encryptedString = $encryption->encrypt('plain-text');
         $decryptedString = $encryption->decrypt($encryptedString);
 
@@ -34,7 +34,7 @@ class EncryptionTest extends TestCase
 
     public function testEncryptAndDecryptWithSodium()
     {
-        $encryption = new Encryption('euyq74tjfdskjFDSGq74','sodium');
+        $encryption = new Encryption('euyq74tjfdskjFDSGq74', 'sodium');
         $encryptedString = $encryption->encrypt('plain-text');
         $decryptedString = $encryption->decrypt($encryptedString);
 
