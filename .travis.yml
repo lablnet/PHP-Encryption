@@ -1,16 +1,20 @@
-# Required to run your project under the correct environment.
 language: php
-
-# Versions of PHP you want your project run with.
+dist: trusty
+sudo: true
 php:
-  - 7.1
-  - 7.2
-  - 7.3
-
-# Commands to be run before your environment runs.
-before_script:
-  - composer self-update
-
-# Customize when the notification emails are sent.
-notifications:
- email: lablnet01@gmail.com
+  - '7.1'
+  - '7.2'
+  - '7.3'
+  - nightly
+matrix:
+  allow_failures:
+    - php: nightly
+before_install:
+  - sudo add-apt-repository ppa:ondrej/php -y
+  - sudo apt-get -qq update
+  - sudo apt-get install -y libsodium-dev
+install:
+  - printf "\n" | pecl install libsodium
+  - composer install
+script:
+ - ./vendor/bin/phpunit
