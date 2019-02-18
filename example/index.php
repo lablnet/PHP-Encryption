@@ -7,9 +7,9 @@
 	//Encrypt the message
 	$encrypt = $encryption->encrypt("This is a text");
 	
-	echo $encrypt;
+	echo "Encrypted text: ".$encrypt;
 	echo "<br\>";
 	
 	//Decrypt the message
 	$decrypt = $encryption->decrypt($encrypt);	
-	echo $decrypt;
+	echo "Decrypted/plain text: ".$decrypt;
