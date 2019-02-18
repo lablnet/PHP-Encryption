@@ -3,13 +3,13 @@
 /**
  * This file is the Encryption test.
  *
- * @author   Malik Umer Farooq <lablnet01@gmail.com>
- * @author-profile https://www.facebook.com/malikumerfarooq01/
+ * @author   Peter279k <peter279k@gmail.com>
+ * @author-profile https://peterli.website/
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
- * @since 3.0.0
+ * @note This file is not a part of Zest Framework.
  *
  * @license MIT
  */
@@ -23,7 +23,7 @@ class EncryptionTest extends TestCase
 {
     public function testEncryptAndDecryptWithOpenSsl()
     {
-        $encryption = new Encryption('openssl', '12345678990-=====-===');
+        $encryption = new Encryption('12345678990-=====-===','openssl');
         $encryptedString = $encryption->encrypt('plain-text');
         $decryptedString = $encryption->decrypt($encryptedString);
 
@@ -34,7 +34,7 @@ class EncryptionTest extends TestCase
 
     public function testEncryptAndDecryptWithSodium()
     {
-        $encryption = new Encryption('sodium', 'euyq74tjfdskjFDSGq74');
+        $encryption = new Encryption('euyq74tjfdskjFDSGq74','sodium');
         $encryptedString = $encryption->encrypt('plain-text');
         $decryptedString = $encryption->decrypt($encryptedString);
 
