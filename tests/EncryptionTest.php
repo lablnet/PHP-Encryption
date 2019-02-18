@@ -38,8 +38,8 @@ class EncryptionTest extends TestCase
         $encryptedString = $encryption->encrypt('plain-text');
         $decryptedString = $encryption->decrypt($encryptedString);
 
-        $this->assertStringEndsWith('==', $encryptedString);
-        $this->assertSame(80, strlen($encryptedString));
+        $this->assertStringEndsNotWith('==', $encryptedString);
+        $this->assertSame(112, strlen($encryptedString));
         $this->assertSame('plain-text', $decryptedString);
     }
 }
