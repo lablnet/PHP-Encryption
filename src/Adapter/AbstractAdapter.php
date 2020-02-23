@@ -16,17 +16,8 @@
 
 namespace Lablnet\Adapter;
 
-abstract class AbstractAdapter
+interface AbstractAdapter
 {
-    /**
-     * Store the secret key.
-     *
-     * @since 3.0.0
-     *
-     * @var string key
-     */
-    protected $key;
-
     /**
      * Encrypt the message.
      *
@@ -36,7 +27,7 @@ abstract class AbstractAdapter
      *
      * @return mixed
      */
-    abstract public function encrypt($data);
+    public function encrypt($data);
 
     /**
      * Decrypt the message.
@@ -47,5 +38,5 @@ abstract class AbstractAdapter
      *
      * @return mixed
      */
-    abstract public function decrypt($token);
+    public function decrypt($token);
 }

@@ -19,8 +19,15 @@ namespace Lablnet\Adapter;
 use Exception;
 use InvalidArgumentException;
 
-class SodiumEncryption extends AbstractAdapter
+class SodiumEncryption implements AbstractAdapter
 {
+    /**
+     * Store secret key.
+     *
+     * @var string
+     */
+    private $key;
+
     /**
      * __Construct.
      *

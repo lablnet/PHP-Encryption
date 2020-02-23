@@ -18,7 +18,7 @@ namespace Lablnet\Adapter;
 
 use InvalidArgumentException;
 
-class OpenSslEncryption extends AbstractAdapter
+class OpenSslEncryption implements AbstractAdapter
 {
     /**
      * Store the cipher iv.
@@ -28,6 +28,13 @@ class OpenSslEncryption extends AbstractAdapter
      * @var string
      */
     private $iv;
+
+    /**
+     * Store secret key.
+     *
+     * @var string
+     */
+    private $key;
 
     /**
      * Cipher.
