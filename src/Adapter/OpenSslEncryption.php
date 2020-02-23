@@ -16,7 +16,9 @@
 
 namespace Lablnet\Adapter;
 
-class OpenSslEncryption
+use InvalidArgumentException;
+
+class OpenSslEncryption extends AbstractAdapter
 {
     /**
      * Store the cipher iv.
@@ -45,12 +47,14 @@ class OpenSslEncryption
      */
     public function __construct($key)
     {
-        if (isset($key)) {
-            $this->iv = openssl_random_pseudo_bytes($this->iv_bytes($this->cipher));
-            $this->key = hash('sha512', $key);
-        } else {
-            throw new \Exception('Crypto key not found', 500);
+        $key = (string) $key;
+
+        if ($key === '') {
+            throw new InvalidArgumentException('The key should not be empty string.');
         }
+
+        $this->iv = openssl_random_pseudo_bytes($this->iv_bytes($this->cipher));
+        $this->key = hash('sha512', $key);
     }
 
     /**

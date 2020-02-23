@@ -17,6 +17,7 @@
 namespace Lablnet;
 
 use InvalidArgumentException;
+use Lablnet\Adapter\AbstractAdapter;
 
 class Encryption
 {
@@ -30,71 +31,17 @@ class Encryption
     private $adapter = null;
 
     /**
-     * Store the key.
-     *
-     * @note This property is not a part of Zest Framework.
-     *
-     * @var mixed
-     */
-    private $key = '';
-
-    /**
      * __construct.
      *
      * @since 3.0.0
      */
-    public function __construct($key, $adapter = null)
+    public function __construct(AbstractAdapter $adapter)
     {
-        $this->setKey($key);
-        ($adapter !== null) ? $this->setAdapter($adapter) : $this->setAdapter('openssl');
-    }
-
-    /**
-     * Set the adapter.
-     *
-     * @param (string) $adapter
-     *
-     * @since 3.0.0
-     *
-     * @return object
-     */
-    public function setAdapter($adapter)
-    {
-        switch (strtolower($adapter)) {
-            case 'sodium':
-                $adapterSet = '\Lablnet\Adapter\SodiumEncryption';
-                break;
-            case 'openssl':
-                $adapterSet = '\Lablnet\Adapter\OpenSslEncryption';
-                break;
-            default:
-                $adapterSet = '\Lablnet\Adapter\OpenSslEncryption';
-                break;
+        if ($adapter === null) {
+            throw new InvalidArgumentException('The adapter class should not be null.');
         }
 
-        $this->adapter = new $adapterSet($this->key);
-
-        return $this;
-    }
-
-    /**
-     * Set the encryption key for openSSL.
-     *
-     * @param (mixed) $key a valid key
-     *
-     * @note This method is not a part of Zest Framework.
-     *
-     * @return mixed
-     */
-    public function setKey($key)
-    {
-        if ($key === '') {
-            throw new InvalidArgumentException('The key should not be empty string.');
-        }
-
-        $this->key = $key;
-
-        return $this;
+        $this->adapter = $adapter;
     }
 
     /**
