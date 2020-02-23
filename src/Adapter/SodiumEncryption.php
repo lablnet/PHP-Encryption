@@ -16,6 +16,9 @@
 
 namespace Lablnet\Adapter;
 
+use Exception;
+use InvalidArgumentException;
+
 class SodiumEncryption extends AbstractAdapter
 {
     /**
@@ -23,10 +26,16 @@ class SodiumEncryption extends AbstractAdapter
      *
      * @since 3.0.0
      */
-    public function __construct($key)
+    public function __construct(string $key)
     {
+        $key = (string) $key;
+
+        if ($key === '') {
+            throw new InvalidArgumentException('The key should not be empty string.');
+        }
+
         if (!function_exists('sodium_crypto_secretbox_keygen')) {
-            throw new \Exception('The sodium php extension does not installed or enabled', 500);
+            throw new Exception('The sodium php extension does not installed or enabled', 500);
         }
 
         //should use user define key.
@@ -36,7 +45,7 @@ class SodiumEncryption extends AbstractAdapter
     /**
      * Encrypt the message.
      *
-     * @param (mixed) $data data to be encrypted
+     * @param string $data data to be encrypted
      *
      * @since 3.0.0
      *
@@ -67,7 +76,7 @@ class SodiumEncryption extends AbstractAdapter
             throw new Exception('The decoding failed');
         }
         if (mb_strlen($decoded, '8bit') < (SODIUM_CRYPTO_SECRETBOX_NONCEBYTES + SODIUM_CRYPTO_SECRETBOX_MACBYTES)) {
-            throw new \Exception('The token was truncated');
+            throw new Exception('The token was truncated');
         }
         $nonce = mb_substr($decoded, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, '8bit');
         $ciphertext = mb_substr($decoded, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, null, '8bit');
@@ -76,7 +85,7 @@ class SodiumEncryption extends AbstractAdapter
         $nonce, $this->key);
 
         if ($plain === false) {
-            throw new \Exception('The message was tampered with in transit');
+            throw new Exception('The message was tampered with in transit');
         }
 
         return $plain;

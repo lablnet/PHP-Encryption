@@ -17,6 +17,8 @@
 namespace Lablnet\Tests;
 
 use InvalidArgumentException;
+use Lablnet\Adapter\OpenSslEncryption;
+use Lablnet\Adapter\SodiumEncryption;
 use Lablnet\Encryption;
 use PHPUnit\Framework\TestCase;
 
@@ -24,10 +26,10 @@ class EncryptionTest extends TestCase
 {
     public function testEncryptAndDecryptOnDifferentKeyWithOpenSsl()
     {
-        $encryption = new Encryption('12345678990-=====-===', 'openssl');
+        $encryption = new Encryption(new OpenSslEncryption('12345678990-=====-==='));
         $encryptedString = $encryption->encrypt('plain-text');
 
-        $encryption2 = new Encryption('different_key', 'openssl');
+        $encryption2 = new Encryption(new OpenSslEncryption('different_key'));
         $decryptedString = $encryption2->decrypt($encryptedString);
 
         $this->assertFalse($decryptedString);
@@ -35,7 +37,7 @@ class EncryptionTest extends TestCase
 
     public function testEncryptAndDecryptWithOpenSsl()
     {
-        $encryption = new Encryption('12345678990-=====-===', 'openssl');
+        $encryption = new Encryption(new OpenSslEncryption('12345678990-=====-==='));
         $encryptedString = $encryption->encrypt('plain-text');
         $decryptedString = $encryption->decrypt($encryptedString);
 
@@ -46,7 +48,7 @@ class EncryptionTest extends TestCase
 
     public function testEncryptAndDecryptWithSodium()
     {
-        $encryption = new Encryption('euyq74tjfdskjFDSGq74', 'sodium');
+        $encryption = new Encryption(new SodiumEncryption('euyq74tjfdskjFDSGq74'));
         $encryptedString = $encryption->encrypt('plain-text');
         $decryptedString = $encryption->decrypt($encryptedString);
 
@@ -55,10 +57,17 @@ class EncryptionTest extends TestCase
         $this->assertSame('plain-text', $decryptedString);
     }
 
-    public function testEncryptOnEmptyStringKey()
+    public function testOpenSslEncrpytionEncryptOnEmptyStringKey()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new Encryption('', 'sodium');
+        new Encryption(new OpenSslEncryption(''));
+    }
+
+    public function testSodiumEncrpytionEncryptOnEmptyStringKey()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new Encryption(new SodiumEncryption(''));
     }
 }

@@ -23,9 +23,9 @@ abstract class AbstractAdapter
      *
      * @since 3.0.0
      *
-     * @var key
+     * @var string key
      */
-    private $key;
+    protected $key;
 
     /**
      * Encrypt the message.
