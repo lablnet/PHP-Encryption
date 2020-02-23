@@ -16,6 +16,7 @@
 
 namespace Lablnet\Tests;
 
+use InvalidArgumentException;
 use Lablnet\Encryption;
 use PHPUnit\Framework\TestCase;
 
@@ -41,5 +42,12 @@ class EncryptionTest extends TestCase
         $this->assertStringEndsNotWith('==', $encryptedString);
         $this->assertSame(112, strlen($encryptedString));
         $this->assertSame('plain-text', $decryptedString);
+    }
+
+    public function testEncryptOnEmptyStringKey()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new Encryption('', 'sodium');
     }
 }

@@ -16,6 +16,8 @@
 
 namespace Lablnet;
 
+use InvalidArgumentException;
+
 class Encryption
 {
     /**
@@ -86,6 +88,10 @@ class Encryption
      */
     public function setKey($key)
     {
+        if ($key === '') {
+            throw new InvalidArgumentException('The key should not be empty string.');
+        }
+
         $this->key = $key;
 
         return $this;
