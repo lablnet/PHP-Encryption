@@ -45,8 +45,8 @@ class Encryption
      */
     public function __construct($key, $adapter = null)
     {
-        ($adapter !== null) ? $this->setAdapter($adapter) : $this->setAdapter('openssl');
         $this->setKey($key);
+        ($adapter !== null) ? $this->setAdapter($adapter) : $this->setAdapter('openssl');
     }
 
     /**

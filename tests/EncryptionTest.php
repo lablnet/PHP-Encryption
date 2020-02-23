@@ -22,6 +22,17 @@ use PHPUnit\Framework\TestCase;
 
 class EncryptionTest extends TestCase
 {
+    public function testEncryptAndDecryptOnDifferentKeyWithOpenSsl()
+    {
+        $encryption = new Encryption('12345678990-=====-===', 'openssl');
+        $encryptedString = $encryption->encrypt('plain-text');
+
+        $encryption2 = new Encryption('different_key', 'openssl');
+        $decryptedString = $encryption2->decrypt($encryptedString);
+
+        $this->assertFalse($decryptedString);
+    }
+
     public function testEncryptAndDecryptWithOpenSsl()
     {
         $encryption = new Encryption('12345678990-=====-===', 'openssl');
